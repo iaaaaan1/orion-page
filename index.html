@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oruga Orión | Robótica de Rescate</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: #1a2235;
+            --primary-color: #00e5ff;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(180deg, rgba(11,15,25,0.9) 0%, rgba(11,15,25,0) 100%);
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .hero {
+            text-align: left; /* Alineado a la izquierda para balancear el fondo */
+            padding: 5rem 3rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+            
+            /* CONFIGURACIÓN DEL FONDO: Integra tu imagen como una insignia espacial a la derecha */
+            background-image: 
+                linear-gradient(90deg, rgba(11,15,25,0.95) 45%, rgba(11,15,25,0.4) 100%), 
+                url('orion.png');
+            background-repeat: no-repeat;
+            background-position: right 2rem center;
+            background-size: contain; /* Evita que la ilustración se recorte */
+        }
+        .hero-content {
+            max-width: 60%; /* Protege el texto para que no se encime sobre el robot */
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 0 2.5rem 0;
+            color: var(--text-muted);
+        }
+        .btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+        }
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        .card h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 20px; 
+            position: relative;
+        }
+        ul li::before {
+            content: '>';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .team-member {
+            background: rgba(26, 34, 53, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #06090f;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            border-top: 1px solid #334155;
+            color: var(--text-muted);
+        }
+        .ig-link {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .ig-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive para pantallas chicas como celulares */
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                background-position: center bottom 1rem;
+                background-size: 45%;
+                padding-bottom: 18rem;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ORUGA ORIÓN</h1>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Exploración y Rescate en Zonas de Riesgo</h2>
+                <p>Un vehículo terrestre robótico tipo oruga diseñado para ingresar a espacios peligrosos, estructuras inestables y zonas de derrumbe. Desarrollado con tecnología de impresión 3D y electrónica avanzada para salvar vidas.</p>
+                <a href="https://www.instagram.com/orion_technx?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" class="btn" target="_blank">Seguinos en Instagram</a>
+            </div>
+        </section>
+
+        <h2 class="section-title">Especificaciones Técnicas</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Hardware y Estructura</h3>
+                <ul>
+                    <li><strong>Chasis:</strong> Impresión 3D en material PETG (alta resistencia al impacto y calor).</li>
+                    <li><strong>Tracción:</strong> Sistema de orugas y transmisión por engranajes impresos.</li>
+                    <li><strong>Motores:</strong> 2x Motorreductores APYS SP6 de alta potencia.</li>
+                    <li><strong>Rodamientos:</strong> 34 rulemanes para movimiento fluido.</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Electrónica y Control</h3>
+                <ul>
+                    <li><strong>Controlador principal:</strong> Placa ATmega2560 (Arduino Mega).</li>
+                    <li><strong>Driver Motores:</strong> Puente H BTS 7960 (control de velocidad y dirección).</li>
+                    <li><strong>Alimentación:</strong> Packs de Baterías de Litio 18650 (4V).</li>
+                    <li><strong>Regulación de voltaje:</strong> Módulo Step Down XL4015 D.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Comunicación y Periféricos</h3>
+                <ul>
+                    <li><strong>Conectividad Local:</strong> Módulo Bluetooth HC-05.</li>
+                    <li><strong>Largo Alcance:</strong> Módulo LoRa SX1278.</li>
+                    <li><strong>Iluminación:</strong> Tira LED RGB WS2812 programable para entornos de nula visibilidad.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">El Equipo Detrás del Proyecto</h2>
+        <div class="card">
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-muted);">
+                Desarrollado por estudiantes de 6º 4ta de la <strong>E.E.S.T. N°4 de Garín</strong>, Escobar, Provincia de Buenos Aires.
+            </p>
+            
+            <h3 style="text-align: center; display: block; border: none;">Alumnos Integrantes</h3>
+            <div class="team-grid">
+                <div class="team-member">Agustina Corvalan</div>
+                <div class="team-member">Morena Fernández</div>
+                <div class="team-member">Ian Morel</div>
+                <div class="team-member">Valentina Pachamé</div>
+                <div class="team-member">Sofía Ramírez</div>
+            </div>
+
+            <h3 style="text-align: center; display: block; border: none; margin-top: 3rem;">Docentes Asesores</h3>
+            <div class="team-grid">
+                <div class="team-member">Adriana Valente</div>
+                <div class="team-member">Paulo Villalba</div>
+                <div class="team-member">Eduardo Baldiviezo</div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h2>PROYECTO ORUGA ORIÓN</h2>
+        <p>Escuela de Educación Secundaria Técnica N°4<br>
+        Pueyrredón 3150, Garín, Escobar, Buenos Aires.</p>
+        <p>Contacto: <a href="mailto:eestn4garinescobar@gmail.com" class="ig-link">eestn4garinescobar@gmail.com</a></p>
+    </footer>
+</body>
+</html>
